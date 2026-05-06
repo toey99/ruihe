@@ -204,7 +204,7 @@ export default function App() {
                 <tr className="border-b border-slate-200 bg-slate-50 text-xs font-semibold uppercase tracking-wider text-slate-500">
                   <th className="px-6 py-3">ชื่อพนักงาน (Employee Name)</th>
                   <th className="px-6 py-3">สถานะ (Status)</th>
-                  <th className="px-6 py-3">วันหมดอายุวีซ่า (Visa Expiry)</th>
+                  <th className="px-6 py-3">วันหมดอายุวีซ่า (Visa Expiry / 签证有效期)</th>
                   <th className="px-6 py-3">เอกสารที่ส่งมอบ (Documents)</th>
                   <th className="px-6 py-3 text-right">จัดการ (Action)</th>
                 </tr>
