@@ -22,10 +22,14 @@ const mockCompanyInfo = {
   taxId: "0205567013629",
 };
 
-const getDocs = (id) => [
-  { label: "BT.34", url: `/documents/${id}_BT34.pdf` },
-  { label: "BT.36", url: `/documents/${id}_BT36.pdf` },
-];
+const getDocs = (empId) => {
+  const basePath = import.meta.env?.BASE_URL || '';
+  const cleanBasePath = basePath.replace(/\/$/, '');
+  return [
+    { name: "BT.34", type: "pdf", size: "1.2 MB", url: `${cleanBasePath}/documents/${empId}_BT34.pdf` },
+    { name: "BT.36", type: "pdf", size: "1.5 MB", url: `${cleanBasePath}/documents/${empId}_BT36.pdf` },
+  ];
+};
 
 const employees = [
   { id: "EMP-001", name: "FENG JIANKE", nameZh: "冯 建科", status: "completed", visaExpiry: "29 May 2026 (2026年5月29日)", documents: getDocs("EMP-001") },
@@ -250,11 +254,11 @@ export default function App() {
                         <div className="flex gap-2">
                           {emp.documents.map((doc) => (
                             <span
-                              key={doc.label}
+                              key={doc.name}
                               className="inline-flex items-center gap-1 rounded-md bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700"
                             >
                               <FileText size={13} />
-                              {doc.label}
+                              {doc.name}
                             </span>
                           ))}
                         </div>
@@ -265,13 +269,13 @@ export default function App() {
                         <div className="flex justify-end gap-2">
                           {emp.documents.map((doc) => (
                             <a
-                              key={doc.label}
+                              key={doc.name}
                               href={doc.url}
-                              download={`${emp.id}_${doc.label.replace(".", "")}.pdf`}
+                              download={`${emp.id}_${doc.name.replace(".", "")}.pdf`}
                               className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3.5 py-2 text-xs font-medium text-slate-700 shadow-sm transition hover:bg-slate-50 no-underline"
                             >
                               <Download size={14} />
-                              {doc.label}
+                              {doc.name}
                             </a>
                           ))}
                         </div>
