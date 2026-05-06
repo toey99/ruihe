@@ -22,31 +22,29 @@ const mockCompanyInfo = {
   taxId: "0205567013629",
 };
 
+const getDocs = (id) => [
+  { label: "BT.34", url: `/documents/${id}_BT34.pdf` },
+  { label: "BT.36", url: `/documents/${id}_BT36.pdf` },
+];
+
 const employees = [
-  { id: "EMP-001", name: "FENG JIANKE (冯 建科)", expiry: "30 May 2026" },
-  { id: "EMP-002", name: "WANG JIANFENG (王 建丰)", expiry: "30 May 2026" },
-  { id: "EMP-003", name: "DU YANSHAN (杜 艳山)", expiry: "30 May 2026" },
-  { id: "EMP-004", name: "ZHAO GUANGPING (赵 光平)", expiry: "25 May 2026" },
-  { id: "EMP-005", name: "HAO YAJIE (郝 雅杰)", expiry: "25 May 2026" },
-  { id: "EMP-006", name: "WEI FACHEN (魏 法臣)", expiry: "03 Jun 2026" },
-  { id: "EMP-007", name: "XU KUANGWEI (许 矿伟)", expiry: "03 Jun 2026" },
-  { id: "EMP-008", name: "CHEN XIAOMIN (陈 小民)", expiry: "03 Jun 2026" },
-  { id: "EMP-009", name: "XU XIANBIN (许 献彬)", expiry: "03 Jun 2026" },
-  { id: "EMP-010", name: "REN FEIFEI (任 菲菲)", expiry: "03 Jun 2026" },
-  { id: "EMP-011", name: "HAILONG LI (李 海龙)", expiry: "01 Jul 2026" },
-  { id: "EMP-012", name: "XIANG WANG (王 响)", expiry: "01 Jul 2026" },
-  { id: "EMP-013", name: "FENG WANG (王 峰)", expiry: "01 Jul 2026" },
-  { id: "EMP-014", name: "LE LI (李 乐)", expiry: "01 Jul 2026" },
-  { id: "EMP-015", name: "JI ZHANG (张 记)", expiry: "01 Jul 2026" },
-  { id: "EMP-016", name: "YUANFU LIAO (廖 远福)", expiry: "01 Jul 2026" },
-].map((emp) => ({
-  ...emp,
-  status: "completed",
-  documents: [
-    { label: "BT.34", url: `/documents/${emp.id}_BT34.pdf` },
-    { label: "BT.36", url: `/documents/${emp.id}_BT36.pdf` },
-  ],
-}));
+  { id: "EMP-001", name: "FENG JIANKE", nameZh: "冯 建科", status: "completed", visaExpiry: "29 May 2026 (2026年5月29日)", documents: getDocs("EMP-001") },
+  { id: "EMP-002", name: "WANG JIANFENG", nameZh: "王 建丰", status: "completed", visaExpiry: "29 May 2026 (2026年5月29日)", documents: getDocs("EMP-002") },
+  { id: "EMP-003", name: "DU YANSHAN", nameZh: "杜 艳山", status: "completed", visaExpiry: "29 May 2026 (2026年5月29日)", documents: getDocs("EMP-003") },
+  { id: "EMP-004", name: "ZHAO GUANGPING", nameZh: "赵 光平", status: "completed", visaExpiry: "24 May 2026 (2026年5月24日)", documents: getDocs("EMP-004") },
+  { id: "EMP-005", name: "HAO YAJIE", nameZh: "郝 雅杰", status: "completed", visaExpiry: "24 May 2026 (2026年5月24日)", documents: getDocs("EMP-005") },
+  { id: "EMP-006", name: "WEI FACHEN", nameZh: "魏 法臣", status: "completed", visaExpiry: "2 June 2026 (2026年6月2日)", documents: getDocs("EMP-006") },
+  { id: "EMP-007", name: "XU KUANGWEI", nameZh: "许 矿伟", status: "completed", visaExpiry: "2 June 2026 (2026年6月2日)", documents: getDocs("EMP-007") },
+  { id: "EMP-008", name: "CHEN XIAOMIN", nameZh: "陈 小民", status: "completed", visaExpiry: "2 June 2026 (2026年6月2日)", documents: getDocs("EMP-008") },
+  { id: "EMP-009", name: "XU XIANBIN", nameZh: "许 献彬", status: "completed", visaExpiry: "2 June 2026 (2026年6月2日)", documents: getDocs("EMP-009") },
+  { id: "EMP-010", name: "REN FEIFEI", nameZh: "任 菲菲", status: "completed", visaExpiry: "2 June 2026 (2026年6月2日)", documents: getDocs("EMP-010") },
+  { id: "EMP-011", name: "HAILONG LI", nameZh: "李 海龙", status: "completed", visaExpiry: "30 June 2026 (2026年6月30日)", documents: getDocs("EMP-011") },
+  { id: "EMP-012", name: "XIANG WANG", nameZh: "王 响", status: "completed", visaExpiry: "30 June 2026 (2026年6月30日)", documents: getDocs("EMP-012") },
+  { id: "EMP-013", name: "FENG WANG", nameZh: "王 峰", status: "completed", visaExpiry: "30 June 2026 (2026年6月30日)", documents: getDocs("EMP-013") },
+  { id: "EMP-014", name: "LE LI", nameZh: "李 乐", status: "completed", visaExpiry: "30 June 2026 (2026年6月30日)", documents: getDocs("EMP-014") },
+  { id: "EMP-015", name: "JI ZHANG", nameZh: "张 记", status: "completed", visaExpiry: "30 June 2026 (2026年6月30日)", documents: getDocs("EMP-015") },
+  { id: "EMP-016", name: "YUANFU LIAO", nameZh: "廖 远福", status: "completed", visaExpiry: "30 June 2026 (2026年6月30日)", documents: getDocs("EMP-016") },
+];
 
 const totalEmployees = employees.length;
 const completedCount = employees.filter((e) => e.status === "completed").length;
@@ -96,7 +94,7 @@ export default function App() {
       const zip = new JSZip();
 
       for (const emp of employees) {
-        const folder = zip.folder(`${emp.id}_${emp.name.split(" (")[0].replace(/ /g, "_")}`);
+        const folder = zip.folder(`${emp.id}_${emp.name.replace(/ /g, "_")}`);
         for (const doc of emp.documents) {
           const res = await fetch(doc.url);
           if (!res.ok) throw new Error(`Failed to fetch ${doc.url}`);
@@ -230,6 +228,7 @@ export default function App() {
                         <div className="font-medium text-slate-900">
                           {emp.name}
                         </div>
+                        <div className="text-xs text-slate-500">{emp.nameZh}</div>
                         <div className="text-xs text-slate-400">{emp.id}</div>
                       </td>
 
@@ -243,7 +242,7 @@ export default function App() {
 
                       {/* Visa Expiry */}
                       <td className="whitespace-nowrap px-6 py-4 text-slate-600">
-                        {emp.expiry}
+                        {emp.visaExpiry}
                       </td>
 
                       {/* Documents */}
