@@ -10,6 +10,8 @@ import {
   Building2,
   FileText,
   ChevronDown,
+  Clock,
+  AlertCircle,
 } from "lucide-react";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
@@ -49,18 +51,36 @@ const employees = [
   { id: "EMP-015", name: "JI ZHANG", nameZh: "张 记", status: "completed", visaExpiry: "30 June 2026 (2026年6月30日)", documents: getDocs("EMP-015") },
   { id: "EMP-016", name: "YUANFU LIAO", nameZh: "廖 远福", status: "completed", visaExpiry: "30 June 2026 (2026年6月30日)", documents: getDocs("EMP-016") },
   { id: "EMP-017", name: "TANG JIANWEI", nameZh: "汤 剑卫", status: "completed", visaExpiry: "23 May 2026 (2026年5月23日)", documents: getDocs("EMP-017") },
-  { id: "EMP-018", name: "ZHENG DIANCAI", nameZh: "郑 电财", status: "completed", visaExpiry: "04 July 2026 (2026年7月4日)", documents: getDocs("EMP-018") },
+  { id: "EMP-018", name: "ZHENG DIANCAI", nameZh: "郑 电财", status: "pending_approval", visaExpiry: "04 July 2026 (2026年7月4日)", documents: getDocs("EMP-018") },
   { id: "EMP-019", name: "SHAN TONGXIANG", nameZh: "单 同香", status: "completed", visaExpiry: "21 May 2026 (2026年5月21日)", documents: getDocs("EMP-019") },
-  { id: "EMP-020", name: "LI XUEBIN", nameZh: "李 学彬", status: "completed", visaExpiry: "21 May 2026 (2026年5月21日)", documents: getDocs("EMP-020") },
+  { id: "EMP-020", name: "LI XUEBIN", nameZh: "李 学彬", status: "pending_approval", visaExpiry: "21 May 2026 (2026年5月21日)", documents: getDocs("EMP-020") },
   { id: "EMP-021", name: "WANG JIANYA", nameZh: "王 建亚", status: "completed", visaExpiry: "21 May 2026 (2026年5月21日)", documents: getDocs("EMP-021") },
   { id: "EMP-022", name: "WANG XUEHAI", nameZh: "王 雪海", status: "completed", visaExpiry: "21 May 2026 (2026年5月21日)", documents: getDocs("EMP-022") },
   { id: "EMP-023", name: "XIAO WU", nameZh: "肖 武", status: "completed", visaExpiry: "21 June 2026 (2026年6月21日)", documents: getDocs("EMP-023") },
   { id: "EMP-024", name: "ZHENG WENJUN", nameZh: "郑 文俊", status: "completed", visaExpiry: "21 June 2026 (2026年6月21日)", documents: getDocs("EMP-024") },
-  { id: "EMP-025", name: "SUN LIBO", nameZh: "孙 利波", status: "completed", visaExpiry: "25 June 2026 (2026年6月25日)", documents: getDocs("EMP-025") },
-  { id: "EMP-026", name: "XUE KAIBIN", nameZh: "薛 凯宾", status: "completed", visaExpiry: "25 June 2026 (2026年6月25日)", documents: getDocs("EMP-026") },
-  { id: "EMP-027", name: "KEWEI YANG", nameZh: "杨 科伟", status: "completed", visaExpiry: "01 July 2026 (2026年7月1日)", documents: getDocs("EMP-027") },
-  { id: "EMP-028", name: "QINGBO LI", nameZh: "李 清波", status: "completed", visaExpiry: "-", documents: getDocs("EMP-028") },
+  { id: "EMP-025", name: "SUN LIBO", nameZh: "孙 利波", status: "pending_approval", visaExpiry: "25 June 2026 (2026年6月25日)", documents: getDocs("EMP-025") },
+  { id: "EMP-026", name: "XUE KAIBIN", nameZh: "薛 凯宾", status: "pending_approval", visaExpiry: "25 June 2026 (2026年6月25日)", documents: getDocs("EMP-026") },
+  { id: "EMP-027", name: "KEWEI YANG", nameZh: "杨 科伟", status: "pending_approval", visaExpiry: "01 July 2026 (2026年7月1日)", documents: getDocs("EMP-027") },
+  { id: "EMP-028", name: "QINGBO LI", nameZh: "李 清波", status: "pending_documents", visaExpiry: "-", documents: getDocs("EMP-028") },
 ];
+
+const statusConfig = {
+  completed: {
+    label: "เสร็จสิ้น",
+    icon: CheckCircle2,
+    className: "bg-green-50 text-green-700",
+  },
+  pending_approval: {
+    label: "รออนุมัติ",
+    icon: Clock,
+    className: "bg-amber-50 text-amber-700",
+  },
+  pending_documents: {
+    label: "รอส่งเอกสารเพิ่มเติม",
+    icon: AlertCircle,
+    className: "bg-orange-50 text-orange-700",
+  },
+};
 
 const totalEmployees = employees.length;
 const completedCount = employees.filter((e) => e.status === "completed").length;
@@ -250,10 +270,18 @@ export default function App() {
 
                       {/* Status */}
                       <td className="px-6 py-4">
-                        <span className="inline-flex items-center gap-1.5 rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-green-700">
-                          <CheckCircle2 size={14} />
-                          เสร็จสิ้น
-                        </span>
+                        {(() => {
+                          const cfg = statusConfig[emp.status] ?? statusConfig.completed;
+                          const Icon = cfg.icon;
+                          return (
+                            <span
+                              className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ${cfg.className}`}
+                            >
+                              <Icon size={14} />
+                              {cfg.label}
+                            </span>
+                          );
+                        })()}
                       </td>
 
                       {/* Visa Expiry */}
