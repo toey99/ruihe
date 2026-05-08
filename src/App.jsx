@@ -61,7 +61,7 @@ const employees = [
   { id: "EMP-025", name: "SUN LIBO", nameZh: "孙 利波", status: "pending_approval", visaExpiry: "25 June 2026 (2026年6月25日)", documents: getDocs("EMP-025") },
   { id: "EMP-026", name: "XUE KAIBIN", nameZh: "薛 凯宾", status: "pending_approval", visaExpiry: "25 June 2026 (2026年6月25日)", documents: getDocs("EMP-026") },
   { id: "EMP-027", name: "KEWEI YANG", nameZh: "杨 科伟", status: "pending_approval", visaExpiry: "01 July 2026 (2026年7月1日)", documents: getDocs("EMP-027") },
-  { id: "EMP-028", name: "QINGBO LI", nameZh: "李 清波", status: "pending_documents", visaExpiry: "-", documents: getDocs("EMP-028") },
+  { id: "EMP-028", name: "QINGBO LI", nameZh: "李 清波", status: "pending_approval", visaExpiry: "30 June 2026 (2026年6月30日)", documents: getDocs("EMP-028") },
 ];
 
 const statusConfig = {
