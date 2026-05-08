@@ -48,6 +48,12 @@ const employees = [
   { id: "EMP-014", name: "LE LI", nameZh: "李 乐", status: "completed", visaExpiry: "30 June 2026 (2026年6月30日)", documents: getDocs("EMP-014") },
   { id: "EMP-015", name: "JI ZHANG", nameZh: "张 记", status: "completed", visaExpiry: "30 June 2026 (2026年6月30日)", documents: getDocs("EMP-015") },
   { id: "EMP-016", name: "YUANFU LIAO", nameZh: "廖 远福", status: "completed", visaExpiry: "30 June 2026 (2026年6月30日)", documents: getDocs("EMP-016") },
+  { id: "EMP-023", name: "XIAO WU", nameZh: "肖 武", status: "completed", visaExpiry: "21 June 2026 (2026年6月21日)", documents: getDocs("EMP-023") },
+  { id: "EMP-024", name: "ZHENG WENJUN", nameZh: "郑 文俊", status: "completed", visaExpiry: "21 June 2026 (2026年6月21日)", documents: getDocs("EMP-024") },
+  { id: "EMP-025", name: "SUN LIBO", nameZh: "孙 利波", status: "completed", visaExpiry: "25 June 2026 (2026年6月25日)", documents: getDocs("EMP-025") },
+  { id: "EMP-026", name: "XUE KAIBIN", nameZh: "薛 凯宾", status: "completed", visaExpiry: "25 June 2026 (2026年6月25日)", documents: getDocs("EMP-026") },
+  { id: "EMP-027", name: "KEWEI YANG", nameZh: "杨 科伟", status: "completed", visaExpiry: "01 July 2026 (2026年7月1日)", documents: getDocs("EMP-027") },
+  { id: "EMP-028", name: "QINGBO LI", nameZh: "李 清波", status: "completed", visaExpiry: "-", documents: getDocs("EMP-028") },
 ];
 
 const totalEmployees = employees.length;
